@@ -8,7 +8,7 @@ import { catchError, map, retry, throwError } from 'rxjs';
 })
 export class HttpService {
     private email: string;
-    private url: string = 'http://localhost:3000'
+    private url: string = 'https://g-weather-forecast-be-fecs.onrender.com'
     constructor(private httpClient: HttpClient) {
       const email = localStorage.getItem("email")
       this.email = email ? JSON.parse(email) : '';
