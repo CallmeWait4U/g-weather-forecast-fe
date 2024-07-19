@@ -1,0 +1,94 @@
+<div fxLayout="column" fxLayoutGap="24px">
+    <div class="toolbar" role="banner" fxLayout="column" fxLayout.gt-md="row">
+        <span>Weather Dashboard</span>
+        <p fxFlex="85"></p>
+        <div *ngIf="email === ''" fxFlex="15" fxLayout="row" class="buttonHeader">
+            <div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="12px">
+                <button (click)="openDialogAccount(false)">Sign Up</button>
+                <button (click)="openDialogAccount(true)">Sign In</button>
+            </div>
+        </div>
+        <div *ngIf="email !== ''" fxFlex="15" fxLayout="row" class="buttonHeader">
+            <div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="12px" class="buttonHeader">
+                <button (click)="logOut()">Sign Out</button>
+                <button *ngIf="!this.registered" (click)="subscribe()">Subscribe Forecast</button>
+                <button *ngIf="this.registered" (click)="unsubscribe()">Unsubscribe Forecast</button>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayout.gt-md="row" class="content" fxLayoutGap="24px">
+        <div fxFlex="30" fxLayout="column" fxLayoutGap="18px" class="name-city">
+            <div>Enter a City Name</div>
+            <div class="inputWrapper">
+                <input type="text" id="cityName" placeholder="E.g., New York, London, Tokyo" #cityName >
+            </div>
+            <div class="buttonCustom">
+                <button mat-flat-button class="search" (click)="handleOnClick(cityName.value)">Search</button>
+            </div>
+            <div class="or">
+                or
+            </div>
+            <div class="buttonCustom" fxLayout="column" fxLayoutGap="18px">
+                <button mat-flat-button class="current" (click)="handleSearchedList()">{{showSearchedList ? 'Hide' : 'Use Current Location'}}</button>
+                <div *ngIf="this.showSearchedList" class="searchedList" fxLayout="column" fxLayoutGap="12px">
+                    <button *ngFor="let name of this.listCityNames" class="searchedCity">
+                        {{name}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="column" fxFlex="70" fxLayoutGap="24px">
+            <div fxLayout="column-reverse" fxLayout.gt-md="row" class="present">
+                <div fxFlex="70" fxLayout="column" fxLayoutGap="18px">
+                    <div class="title">{{result?.cityName}} ({{result?.date}})</div>
+                    <div>Temperature: {{result?.temp}}&deg;C</div>
+                    <div>Wind: {{result?.wind}} M/S</div>
+                    <div>Humidity: {{result?.humi}}%</div>
+                </div>
+                <div fxFlex="30" fxLayout="column" class="image">
+                    <img src={{result?.conditionIcon}} width="100" height="100">
+                    <div>{{result?.conditionText}}</div>
+                </div>
+            </div>
+            <div class="forecast">4-Day Forecast</div>
+            <div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="12px" >
+                <div *ngFor="let forecastday of this.result?.forecastDays" class="future"  fxFlex="25" fxLayout="column" fxLayoutGap="8px">
+                    <div class="title">({{forecastday.date}})</div>
+                    <div class="image">
+                        <img src={{forecastday.conditionIcon}} width="100" height="100">
+                    </div>
+                    <div>Temperature: {{forecastday.temp}}&deg;C</div>
+                    <div>Wind: {{forecastday.wind}} M/S</div>
+                    <div>Humidity: {{forecastday.humi}}%</div>
+                </div>
+                <!-- <div class="future"  fxFlex="25" fxLayout="column" fxLayoutGap="8px">
+                    <div class="title">(2023-06-21)</div>
+                    <div class="image">
+                        <img src="//cdn.weatherapi.com/weather/64x64/day/116.png" width="100" height="100">
+                    </div>
+                    <div>Temperature: 16.78&deg;C</div>
+                    <div>Wind: 2.72 M/S</div>
+                    <div>Humidity: 83%</div>
+                </div>
+                <div class="future"  fxFlex="25" fxLayout="column" fxLayoutGap="8px">
+                    <div class="title">(2023-06-22)</div>
+                    <div class="image">
+                        <img src="//cdn.weatherapi.com/weather/64x64/day/116.png" width="100" height="100">
+                    </div>
+                    <div>Temperature: 18.20&deg;C</div>
+                    <div>Wind: 1.49 M/S</div>
+                    <div>Humidity: 72%</div>
+                </div>
+                <div class="future"  fxFlex="25" fxLayout="column" fxLayoutGap="8px">
+                    <div class="title">(2023-06-23)</div>
+                    <div class="image">
+                        <img src="//cdn.weatherapi.com/weather/64x64/day/116.png" width="100" height="100">
+                    </div>
+                    <div>Temperature: 17.08&deg;C</div>
+                    <div>Wind: 0.9 M/S</div>
+                    <div>Humidity: 89%</div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

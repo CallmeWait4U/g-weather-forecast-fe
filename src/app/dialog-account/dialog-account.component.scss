@@ -1,0 +1,80 @@
+.closeWrapper {
+    text-align: center;
+    margin-bottom: 20px;
+    .closeBtn {
+        background-color: #FFFFFF;
+    }
+}
+
+.dialog {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 20px;
+    
+    .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .field {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            label {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        
+            .inputWrapper {
+                position: relative;
+                input {
+                    display: block;
+                    width: -webkit-fill-available;
+                    text-align: left;
+                    padding: 10px 15px;
+                    font-size: 14px;
+                    line-height: 22px;
+                    border-radius: 4px;
+                    border: rgba($color: #c8c8c8, $alpha: 1) solid thin;
+                }
+            }
+        }
+    }
+
+    .btn {
+        padding: 0;
+        color: white;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+            width: 50%;
+            height: 55px;
+            background-color: #1976d2;
+        }
+    }
+    
+    ::ng-deep {
+        .mat-mdc-tab-body-wrapper {
+            flex-grow: 1;
+        }
+        .customTab {
+            margin-left: auto;
+            opacity: 1;
+            .btnGroup {
+                button {
+                    margin-left: 15px;
+                }
+            }
+            &:hover {
+                cursor: unset;
+                .mdc-tab__ripple::before {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}
