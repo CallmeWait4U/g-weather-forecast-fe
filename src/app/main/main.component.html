@@ -31,7 +31,7 @@
             <div class="buttonCustom" fxLayout="column" fxLayoutGap="18px">
                 <button mat-flat-button class="current" (click)="handleSearchedList()">{{showSearchedList ? 'Hide' : 'Use Current Location'}}</button>
                 <div *ngIf="this.showSearchedList" class="searchedList" fxLayout="column" fxLayoutGap="12px">
-                    <button *ngFor="let name of this.listCityNames" class="searchedCity">
+                    <button *ngFor="let name of this.listCityNames" class="searchedCity" (click)="handleOnClick(name)">
                         {{name}}
                     </button>
                 </div>
