@@ -44,8 +44,23 @@ export class MainComponent implements OnInit {
     this.registered = registered ? JSON.parse(registered) : '';
     this.httpService.search('Ho Chi Minh City').subscribe((res) => {
       this.saveSearchResult(res);
-      localStorage.setItem("listNames", JSON.stringify([res.cityName]));
-      this.listCityNames = [res.cityName];
+      const listNames = localStorage.getItem("listNames");
+      if (listNames) {
+        const names = JSON.parse(listNames) as string[];
+        const index = names.findIndex((i) => i === res.cityName);
+        if (index === -1) {
+          names.unshift(res.cityName);
+          localStorage.setItem("listNames", JSON.stringify(names));
+        } else {
+          names.splice(index, 1);
+          names.unshift(res.cityName);
+          localStorage.setItem("listNames", JSON.stringify(names));
+        }
+        this.listCityNames = names;
+      } else {
+        localStorage.setItem("listNames", JSON.stringify([res.cityName]));
+        this.listCityNames = [res.cityName];
+      }
     })
   }
 
