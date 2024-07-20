@@ -9,19 +9,14 @@ First, install packages:
 $ npm install
 ```
 
-Then, generate Prisma Client code or to re-generate Prisma Client code:
-```bash
-$ npm prisma generate
-```
-
-Finally, start project:
+Then, start project:
 ```bash
 $ npm start
 ```
 
 # Description
 
-This project is implemented using the Angular framework and uses [Netlify](https://www.netlify.com/) for deployment.
+This project is implemented using the Angular framework and used [Netlify](https://www.netlify.com/) for deployment.
 Main features of the project:
 - Sign up/ Sign in to the website (not use token).
 - Subscribe and unsubscribeto receive daily weather forecast information via email address.
